@@ -18,9 +18,10 @@ class MainActivity : AppCompatActivity() {
             val ten = binding.edtTenCongViec.text.toString().trim()
             val moTa = binding.edtMoTaCongViec.text.toString().trim()
 
+            val congViecMoi = CongViec(tenCongViec = ten, moTa = moTa, trangThai = false)
+
             val intent = Intent(this, ChiTietCongViecActivity::class.java).apply {
-                putExtra("KEY_TEN", ten)
-                putExtra("KEY_MOTA", moTa)
+                putExtra("KEY_CONG_VIEC", congViecMoi)
             }
             startActivity(intent)
         }

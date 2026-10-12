@@ -35,3 +35,19 @@ android:layout_height="wrap_content"
 android:hint="Nhập mô tả chi tiết công việc"
 android:minHeight="48dp"
 android:layout_marginBottom="24dp" />
+    <!-- Nut Tao cong viec -->
+<Button
+android:id="@+id/btnTaoCongViec"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Tạo công việc"
+android:backgroundTint="#4CAF50"
+android:layout_marginBottom="12dp" />
+
+    <!-- Nut Xem danh sach cong viec -->
+<Button
+android:id="@+id/btnXemDanhSach"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Xem danh sách công việc"
+android:backgroundTint="#607D8B" />

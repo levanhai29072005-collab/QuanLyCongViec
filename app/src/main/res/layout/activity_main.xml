@@ -17,38 +17,39 @@
         android:textColor="#1976D2"
         android:layout_marginBottom="24dp" />
 
-</LinearLayout>
     <!-- O nhap ten cong viec -->
-<EditText
-android:id="@+id/edtTenCongViec"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:hint="Nhập tên công việc"
-android:minHeight="48dp"
-android:layout_marginBottom="16dp" />
+    <EditText
+        android:id="@+id/edtTenCongViec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập tên công việc"
+        android:minHeight="48dp"
+        android:layout_marginBottom="16dp" />
 
     <!-- O nhap mo ta cong viec -->
-    <!-- O nhap mo ta cong viec -->
-<EditText
-android:id="@+id/edtMoTaCongViec"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:hint="Nhập mô tả chi tiết công việc"
-android:minHeight="48dp"
-android:layout_marginBottom="24dp" />
+    <EditText
+        android:id="@+id/edtMoTaCongViec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nhập mô tả chi tiết công việc"
+        android:minHeight="48dp"
+        android:layout_marginBottom="24dp" />
+
     <!-- Nut Tao cong viec -->
-<Button
-android:id="@+id/btnTaoCongViec"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:text="Tạo công việc"
-android:backgroundTint="#4CAF50"
-android:layout_marginBottom="12dp" />
+    <Button
+        android:id="@+id/btnTaoCongViec"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tạo công việc"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="12dp" />
 
     <!-- Nut Xem danh sach cong viec -->
-<Button
-android:id="@+id/btnXemDanhSach"
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:text="Xem danh sách công việc"
-android:backgroundTint="#607D8B" />
+    <Button
+        android:id="@+id/btnXemDanhSach"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Xem danh sách công việc"
+        android:backgroundTint="#607D8B" />
+
+</LinearLayout>

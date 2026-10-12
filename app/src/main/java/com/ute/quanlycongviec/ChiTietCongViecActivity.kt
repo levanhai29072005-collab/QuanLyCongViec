@@ -1,20 +1,22 @@
 package com.ute.quanlycongviec
 
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.ute.quanlycongviec.databinding.ActivityChiTietCongViecBinding
 
 class ChiTietCongViecActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityChiTietCongViecBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_chi_tiet_cong_viec2)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = ActivityChiTietCongViecBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        val ten = intent.getStringExtra("KEY_TEN") ?: ""
+        val moTa = intent.getStringExtra("KEY_MOTA") ?: ""
+
+        binding.tvHienThiTen.text = "Tên công việc: $ten"
+        binding.tvHienThiMoTa.text = "Mô tả: $moTa"
     }
 }

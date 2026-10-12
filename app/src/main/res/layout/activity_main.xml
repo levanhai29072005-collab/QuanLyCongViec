@@ -18,3 +18,20 @@
         android:layout_marginBottom="24dp" />
 
 </LinearLayout>
+    <!-- O nhap ten cong viec -->
+<EditText
+android:id="@+id/edtTenCongViec"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Nhập tên công việc"
+android:minHeight="48dp"
+android:layout_marginBottom="16dp" />
+
+    <!-- O nhap mo ta cong viec -->
+<EditText
+android:id="@+id/edtMoTaCongViec"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:hint="Nhập mô tả chi tiết công việc"
+android:minHeight="48dp"
+android:layout_marginBottom="24dp" />

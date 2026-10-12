@@ -32,5 +32,11 @@
         android:textSize="16sp"
         android:textColor="#555555"
         android:layout_marginBottom="24dp" />
+    <Button
+        android:id="@+id/btnChinhSua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Chỉnh sửa công việc"
+        android:backgroundTint="#FF9800" />
 
 </LinearLayout>

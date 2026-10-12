@@ -2,27 +2,32 @@ package com.ute.quanlycongviec
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import com.ute.quanlycongviec.databinding.ActivityChiTietCongViecBinding
+import java.io.Serializable
 
 class ChiTietCongViecActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityChiTietCongViecBinding
-    private var tenCongViec: String = ""
-    private var moTaCongViec: String = ""
+    private var congViec: CongViec? = null
+
+    private inline fun <reified T : Serializable> Intent.laySerializable(key: String): T? = when {
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU -> getSerializableExtra(key, T::class.java)
+        else -> @Suppress("DEPRECATION") getSerializableExtra(key) as? T
+    }
 
     private val boKhoiChaySua = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { ketQua ->
         if (ketQua.resultCode == Activity.RESULT_OK) {
-            val tenMoi = ketQua.data?.getStringExtra("KEY_TEN_MOI") ?: ""
-            val moTaMoi = ketQua.data?.getStringExtra("KEY_MOTA_MOI") ?: ""
-
-            tenCongViec = tenMoi
-            moTaCongViec = moTaMoi
-            capNhatGiaoDien()
+            val congViecCapNhat = ketQua.data?.laySerializable<CongViec>("KEY_CONG_VIEC_SUA")
+            congViecCapNhat?.let {
+                congViec = it
+                capNhatGiaoDien()
+            }
         }
     }
 
@@ -31,21 +36,21 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         binding = ActivityChiTietCongViecBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        tenCongViec = intent.getStringExtra("KEY_TEN") ?: ""
-        moTaCongViec = intent.getStringExtra("KEY_MOTA") ?: ""
+        congViec = intent.laySerializable<CongViec>("KEY_CONG_VIEC")
         capNhatGiaoDien()
 
         binding.btnChinhSua.setOnClickListener {
             val intent = Intent(this, ChinhSuaCongViecActivity::class.java).apply {
-                putExtra("KEY_SUA_TEN", tenCongViec)
-                putExtra("KEY_SUA_MOTA", moTaCongViec)
+                putExtra("KEY_CONG_VIEC_GUI_SUA", congViec)
             }
             boKhoiChaySua.launch(intent)
         }
     }
 
     private fun capNhatGiaoDien() {
-        binding.tvHienThiTen.text = "Tên công việc: $tenCongViec"
-        binding.tvHienThiMoTa.text = "Mô tả: $moTaCongViec"
+        congViec?.let {
+            binding.tvHienThiTen.text = "Tên: ${it.tenCongViec}"
+            binding.tvHienThiMoTa.text = it.layThongTinCongViec()
+        }
     }
 }

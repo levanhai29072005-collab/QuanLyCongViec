@@ -13,13 +13,17 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         binding.btnTaoCongViec.setOnClickListener {
             val ten = binding.edtTenCongViec.text.toString().trim()
             val moTa = binding.edtMoTaCongViec.text.toString().trim()
 
-            val congViecMoi = CongViec(tenCongViec = ten, moTa = moTa, trangThai = false)
+            if (ten.isEmpty()) {
+                binding.edtTenCongViec.error = "Tên công việc không được để trống!"
+                android.widget.Toast.makeText(this, "Vui lòng nhập tên công việc!", android.widget.Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
 
+            val congViecMoi = CongViec(tenCongViec = ten, moTa = moTa, trangThai = false)
             val intent = Intent(this, ChiTietCongViecActivity::class.java).apply {
                 putExtra("KEY_CONG_VIEC", congViecMoi)
             }

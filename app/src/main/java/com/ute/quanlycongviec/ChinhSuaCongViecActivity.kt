@@ -33,6 +33,12 @@ class ChinhSuaCongViecActivity : AppCompatActivity() {
             val tenMoi = binding.edtSuaTen.text.toString().trim()
             val moTaMoi = binding.edtSuaMoTa.text.toString().trim()
 
+            if (tenMoi.isEmpty()) {
+                binding.edtSuaTen.error = "Tên công việc không được để trống!"
+                android.widget.Toast.makeText(this, "Vui lòng nhập tên công việc!", android.widget.Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val congViecMoi = congViecHienTai?.copy(tenCongViec = tenMoi, moTa = moTaMoi)
                 ?: CongViec(tenMoi, moTaMoi, false)
 

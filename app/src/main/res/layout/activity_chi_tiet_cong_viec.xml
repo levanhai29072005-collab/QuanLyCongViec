@@ -31,7 +31,28 @@
         android:text="Mô tả: "
         android:textSize="16sp"
         android:textColor="#555555"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Hien thi trang thai cong viec -->
+    <TextView
+        android:id="@+id/tvHienThiTrangThai"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Trạng thái: Chưa hoàn thành"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#D32F2F"
+        android:layout_marginBottom="16dp" />
+
+    <!-- CheckBox danh dau hoan thanh -->
+    <CheckBox
+        android:id="@+id/cbDaHoanThanh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Đánh dấu công việc đã hoàn thành"
+        android:textSize="16sp"
         android:layout_marginBottom="24dp" />
+
     <Button
         android:id="@+id/btnChinhSua"
         android:layout_width="match_parent"

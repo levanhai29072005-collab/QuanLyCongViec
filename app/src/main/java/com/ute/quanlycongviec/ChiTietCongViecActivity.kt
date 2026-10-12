@@ -42,12 +42,13 @@ class ChiTietCongViecActivity : AppCompatActivity() {
         congViec = intent.laySerializable<CongViec>("KEY_CONG_VIEC")
         capNhatGiaoDien()
 
-        // Xu ly danh dau hoan thanh cong viec
-        binding.cbDaHoanThanh.setOnCheckedChangeListener { _, isChecked ->
-            congViec?.trangThai = isChecked
-            capNhatTrangThaiUI(isChecked)
-            val thongBao = if (isChecked) "Đã hoàn thành công việc!" else "Đã chuyển về chưa hoàn thành!"
-            Toast.makeText(this, thongBao, Toast.LENGTH_SHORT).show()
+        // Xu ly su kien nut Hoan thanh
+        binding.btnHoanThanh.setOnClickListener {
+            congViec?.let {
+                it.trangThai = true
+                capNhatGiaoDien()
+                Toast.makeText(this, "Công việc đã được cập nhật thành hoàn thành!", Toast.LENGTH_SHORT).show()
+            }
         }
 
         binding.btnChinhSua.setOnClickListener {
@@ -59,21 +60,19 @@ class ChiTietCongViecActivity : AppCompatActivity() {
     }
 
     private fun capNhatGiaoDien() {
-        congViec?.let {
-            binding.tvHienThiTen.text = "Tên: ${it.tenCongViec}"
-            binding.tvHienThiMoTa.text = "Mô tả: ${it.moTa}"
-            binding.cbDaHoanThanh.isChecked = it.trangThai
-            capNhatTrangThaiUI(it.trangThai)
-        }
-    }
+        congViec?.let { cv ->
+            binding.tvHienThiMa.text = "Mã công việc: ${cv.maCongViec}"
+            binding.tvHienThiTen.text = "Tên: ${cv.tenCongViec}"
+            binding.tvHienThiMoTa.text = "Mô tả: ${cv.moTa}"
 
-    private fun capNhatTrangThaiUI(daXong: Boolean) {
-        if (daXong) {
-            binding.tvHienThiTrangThai.text = "Trạng thái: Đã hoàn thành"
-            binding.tvHienThiTrangThai.setTextColor(Color.parseColor("#2E7D32"))
-        } else {
-            binding.tvHienThiTrangThai.text = "Trạng thái: Chưa hoàn thành"
-            binding.tvHienThiTrangThai.setTextColor(Color.parseColor("#D32F2F"))
+            // Hien thi trang thai dua tren ham laDaHoanThanh()
+            if (cv.laDaHoanThanh()) {
+                binding.tvHienThiTrangThai.text = "Trạng thái: Đã hoàn thành"
+                binding.tvHienThiTrangThai.setTextColor(Color.parseColor("#2E7D32"))
+            } else {
+                binding.tvHienThiTrangThai.text = "Trạng thái: Chưa hoàn thành"
+                binding.tvHienThiTrangThai.setTextColor(Color.parseColor("#D32F2F"))
+            }
         }
     }
 }
